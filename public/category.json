@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "category_name": "Mountain Treks"
+  },
+  {
+    "id": 2,
+    "category_name": "Forest Expeditions"
+  },
+  {
+    "id": 3,
+    "category_name": "Desert Exploration"
+  }
+]
