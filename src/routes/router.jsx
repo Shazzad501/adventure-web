@@ -10,6 +10,8 @@ import CardDetails from "../pages/CardDetails";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
+import UserProfilePrivate from "./userProfilePrivate";
+import UpdateProfilePrivate from "./UpdateProfilePrivate";
 
 const router = createBrowserRouter([
   {
@@ -39,11 +41,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/user-profile',
-        element: <UserProfile></UserProfile>
+        element: <UserProfilePrivate><UserProfile></UserProfile></UserProfilePrivate>
       },
       {
         path: '/update-profile',
-        element: <UpdateProfile></UpdateProfile>
+        element: <UpdateProfilePrivate><UpdateProfile></UpdateProfile></UpdateProfilePrivate>
       },
       {
         path: '/category/:id',

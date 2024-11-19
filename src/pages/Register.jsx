@@ -4,7 +4,7 @@ import { AuthContext } from '../provider/AuthProvider';
 import toast from 'react-hot-toast';
 
 const Register = () => {
-  const {newUserSet, setUser} = useContext(AuthContext);
+  const {newUserSet, setUser, upDateProfile} = useContext(AuthContext);
   const navigate = useNavigate()
 
   // handle registration function
@@ -22,6 +22,13 @@ const Register = () => {
       navigate('/')
       e.target.reset();
       toast.success("Successfully Regisered!")
+      upDateProfile({displayName: name, photoURL: photo})
+    .then(()=>{
+      toast.success("Profile Update success!!")
+    })
+    .catch((err)=>{
+      toast.error(`${err.message}`)
+    })
     })
     .catch(err => toast.error(`${err.message}`))
   }

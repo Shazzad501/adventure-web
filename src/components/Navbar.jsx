@@ -35,9 +35,9 @@ const Navbar = () => {
 
           {
             user ? 
-            <NavLink onClick={handleLogOut} className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to=''>Log Out</NavLink> 
+            <NavLink onClick={handleLogOut} className={({isActive})=> `btn hidden md:flex  text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to=''>Log Out</NavLink> 
             :
-            <NavLink className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to='/auth/login'>Login</NavLink>
+            <NavLink className={({isActive})=> `btn hidden md:flex text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to='/auth/login'>Login</NavLink>
           }
 
           <div className="dropdown dropdown-end">
@@ -62,6 +62,15 @@ const Navbar = () => {
               <NavLink className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to="/destination">Tracking Place</NavLink>
               <NavLink className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to="/user-profile">Profile</NavLink>
               <NavLink className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to="/update-profile">Update Profile</NavLink>
+
+              {
+                user ? 
+                <NavLink onClick={handleLogOut} className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to=''>Log Out</NavLink> 
+                :
+                <NavLink className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to='/auth/login'>Login</NavLink>
+              }
+
+
             </ul>
           </div>
         </div>
