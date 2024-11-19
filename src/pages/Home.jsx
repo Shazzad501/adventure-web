@@ -2,6 +2,7 @@ import React from 'react';
 import Footer from '../components/Footer';
 import Slider from '../components/Slider';
 import { Outlet } from 'react-router-dom';
+import AboutSection from '../components/AboutSection';
 
 const Home = () => {
   return (
@@ -10,6 +11,10 @@ const Home = () => {
       <header>
         <Slider></Slider>
       </header>
+      {/* about section */}
+        <section className='w-11/12 mx-auto'>
+          <AboutSection></AboutSection>
+        </section>
       {/* main content */}
       <section>
         <Outlet></Outlet>

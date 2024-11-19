@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { FaGoogle } from 'react-icons/fa';
+import React, { useContext, useState } from 'react';
+import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import toast from 'react-hot-toast';
@@ -7,7 +7,11 @@ import toast from 'react-hot-toast';
 const Login = () => {
   const {setUser, loginUser, createUserWithGoogle} = useContext(AuthContext)
   const navigate = useNavigate()
+  // eye pass show stat
+  const [showPass, setShowPass] = useState(false)
 
+
+  // handle login
   const handleLogin=(e)=>{
     e.preventDefault();
     const email = e.target.email.value;
@@ -36,48 +40,53 @@ const Login = () => {
     })
     .catch(err=> toast.error(`${err.message}`))
   }
+
+  // handle forget password
+  const handleForgotPassword=()=>{
+  }
   return (
     <div className="flex items-center justify-center min-h-screen">
-    <div className="card bg-base-100 w-full max-w-md py-16 px-5 shrink-0 rounded-md">
-      <h2 className="font-bold text-xl text-center ">Login your account</h2>
-      <form onSubmit={handleLogin} className="card-body">
-        {/* Email filed */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text font-semibold text-base">Email Address</span>
-          </label>
-          <input 
-          name="email"
-          type="email" 
-          placeholder="demo.mail@gamil.com" 
-          className="input input-bordered" required />
-        </div>
-        {/* Email filed */}
+        <div className="card bg-base-100 w-full max-w-md py-16 px-5 shrink-0 rounded-md">
+          <h2 className="font-bold text-xl text-center ">Login your account</h2>
+          <form onSubmit={handleLogin} className="card-body">
+            {/* Email filed */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text font-semibold text-base">Email Address</span>
+              </label>
+              <input 
+              name="email"
+              type="email" 
+              placeholder="demo.mail@gamil.com" 
+              className="input input-bordered" required />
+            </div>
+            {/* Email filed */}
 
-        {/* password filed */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text font-semibold text-base">Password</span>
-          </label>
-          <input 
-          name="password"
-          type="password" 
-          placeholder="Enter your password" 
-          className="input input-bordered" required />
-          <label className="label">
-            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-          </label>
-        </div>
-        {/* password filed */}
-        <div className="form-control mt-6">
-          <button className="btn bg-[#073B4c] font-bold text-base text-white hover:bg-[#073B4c]">Login</button>
+            {/* password filed */}
+            <div className="form-control relative">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label> 
+              <input 
+              type={showPass ? 'text' : 'password'}
+              name='password' 
+              placeholder="password" 
+              className="input input-bordered" required />
+              <button onClick={()=>setShowPass(!showPass)} className='btn btn-xs absolute right-2 top-12'>{showPass ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}</button>
+              <label className="label">
+                <Link to='' onClick={handleForgotPassword} className="label-text-alt link link-hover">Forgot password?</Link>
+              </label>
+            </div>
+            {/* password filed */}
+            <div className="form-control mt-6">
+              <button className="btn bg-[#073B4c] font-bold text-base text-white hover:bg-[#073B4c]">Login</button>
 
-          <button onClick={handleGoogleLogin} className="btn mt-6 bg-[#073B4c] font-bold text-base text-white hover:bg-[#073B4c]"><FaGoogle></FaGoogle>Login with Google</button>
+              <button onClick={handleGoogleLogin} className="btn mt-6 bg-[#073B4c] font-bold text-base text-white hover:bg-[#073B4c]"><FaGoogle></FaGoogle>Login with Google</button>
+            </div>
+          </form>
+          <p className='font-semibold text-sm text-center'>Don't Have An Account? <Link to='/auth/register' className='font-semibold text-sm text-red-600 underline'>Register</Link></p>
         </div>
-      </form>
-      <p className='font-semibold text-sm text-center'>Don't Have An Account? <Link to='/auth/register' className='font-semibold text-sm text-red-600 underline'>Register</Link></p>
     </div>
-</div>
   );
 };
 

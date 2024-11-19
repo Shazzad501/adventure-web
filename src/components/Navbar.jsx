@@ -32,6 +32,14 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
+          {
+            user && <div className="w-12 h-12 mr-3 rounded-full border-2 border-[#073B4c] overflow-hidden">
+            <img 
+            className="w-full h-full object-cover"
+            src={user && user?.photoURL} 
+            alt="" />
+          </div>
+          }
 
           {
             user ? 
@@ -60,8 +68,12 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow flex gap-4">
               <NavLink className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to="/">Home</NavLink>
               <NavLink className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to="/destination">Tracking Place</NavLink>
-              <NavLink className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to="/user-profile">Profile</NavLink>
-              <NavLink className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to="/update-profile">Update Profile</NavLink>
+              {
+                user&& <NavLink className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to="/user-profile">Profile</NavLink>
+              }
+              {
+                user && <NavLink className={({isActive})=> `btn text-[#092635] hover:border-l-0 hover:border-r-0 hover:border-t-0 hover:bg-transparent hover:boreder-b-2 hover:border-b-[#073B4c] bg-transparent font-bold text-base ${isActive ?"border-b-2 hover:border-b border-b-[#073B4c]" :''}`} to="/update-profile">Update Profile</NavLink>
+              }
 
               {
                 user ? 

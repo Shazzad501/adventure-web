@@ -10,12 +10,19 @@ const CategoryTab = () => {
   }, [setCategory])
   return (
     <div>
-    <div role="tablist" className="tabs tabs-lifted">
-      {
-        category.map(cat => <NavLink key={cat.id} to={`/adventure/${cat.category_name}`} role="tab" className={({isActive}) => `tab font-bold text-base ${isActive ? 'tab-active' : ''}`}>{cat.category_name}</NavLink>)
-      }
-  </div>
-  </div>
+      <div role="tablist" className="tabs tabs-lifted flex overflow-x-auto">
+        {category.map(cat => (
+          <NavLink
+            key={cat.id}
+            to={`/adventure/${cat.category_name}`}
+            role="tab"
+            className={({ isActive }) => `tab font-bold text-base px-4 py-2 ${isActive ? 'tab-active' : ''}`}
+          >
+            {cat.category_name}
+          </NavLink>
+        ))}
+      </div>
+    </div>
   );
 };
 

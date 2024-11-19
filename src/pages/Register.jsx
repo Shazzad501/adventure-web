@@ -1,11 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import toast from 'react-hot-toast';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register = () => {
   const {newUserSet, setUser, upDateProfile} = useContext(AuthContext);
   const navigate = useNavigate()
+    // eye pass show stat
+    const [showPass, setShowPass] = useState(false)
 
   // handle registration function
   const handleRegister=(e)=>{
@@ -75,19 +78,19 @@ const Register = () => {
           className="input input-bordered" required />
         </div>
         {/* Email filed */}
-        
-        {/* password filed */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text font-semibold text-base">Password</span>
-          </label>
-          <input 
-          name='password'
-          type="password" 
-          placeholder="Enter password"
-          className="input input-bordered" required />
-        </div>
-        {/* password filed */}
+                    {/* password filed */}
+                    <div className="form-control relative">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label> 
+              <input 
+              type={showPass ? 'text' : 'password'}
+              name='password' 
+              placeholder="password" 
+              className="input input-bordered" required />
+              <button onClick={()=>setShowPass(!showPass)} className='btn btn-xs absolute right-2 top-12'>{showPass ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}</button>
+            </div>
+            {/* password filed */}
         <div className="form-control mt-6">
           <button className="btn bg-[#073B4c] font-bold text-base text-white hover:bg-[#073B4c]">Register</button>
         </div>
