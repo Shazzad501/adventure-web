@@ -6,7 +6,7 @@ const MainLayout = () => {
   return (
     <div>
       {/* Navbar */}
-      <nav className='w-11/12 mx-auto sticky top-0 left-0 right-0 z-50'>
+      <nav className='sticky top-0 left-0 right-0 z-50'>
         <Navbar></Navbar>
       </nav>
       {/* daynamic routes */}
