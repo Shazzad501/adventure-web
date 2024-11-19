@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import toast from 'react-hot-toast';
@@ -25,16 +25,22 @@ const Register = () => {
       navigate('/')
       e.target.reset();
       toast.success("Successfully Regisered!")
-      upDateProfile({displayName: name, photoURL: photo})
+
+    upDateProfile({displayName: name, photoURL: photo})
     .then(()=>{
       toast.success("Profile Update success!!")
     })
     .catch((err)=>{
       toast.error(`${err.message}`)
     })
+
     })
     .catch(err => toast.error(`${err.message}`))
   }
+
+  useEffect(()=>{
+    document.title="Register || Eco-Adventure"
+  }, [])
   return (
     <div className="flex items-center justify-center min-h-screen">
     <div className="card bg-base-100 w-full max-w-md py-12 px-5 shrink-0 rounded-md">

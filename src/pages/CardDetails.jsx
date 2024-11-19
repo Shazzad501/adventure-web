@@ -8,6 +8,7 @@ const CardDetails = () => {
   const adventuredata = useLoaderData();
 
   useEffect(() => {
+    document.title="Details || Eco-Adventure"
     if (id) {
       const findCard = [...adventuredata].find(data => data.ID === id);
       setAdventure(findCard);

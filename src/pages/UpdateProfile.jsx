@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -6,6 +6,8 @@ import toast from 'react-hot-toast';
 const UpdateProfile = () => {
   const{upDateProfile} = useContext(AuthContext)
   const navigate = useNavigate()
+
+
   const handleUpdateProfile=(e)=>{
     e.preventDefault();
 
@@ -23,6 +25,10 @@ const UpdateProfile = () => {
     // Reset the form fields after successful registration
     e.target.reset();
   }
+
+  useEffect(()=>{
+    document.title="Update profile || Eco-Adventure"
+  }, [])
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="card bg-base-100 w-full max-w-md py-12 px-5 shrink-0 rounded-md">

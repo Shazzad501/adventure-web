@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Footer from '../components/Footer';
 import Slider from '../components/Slider';
 import { Outlet } from 'react-router-dom';
 import AboutSection from '../components/AboutSection';
 
 const Home = () => {
+  useEffect(()=>{
+    document.title="Home || Eco-Adventure"
+  }, [])
   return (
     <div>
       {/* Header/ slider */}

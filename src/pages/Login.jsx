@@ -1,14 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import toast from 'react-hot-toast';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import auth from '../firebase/firebase.config';
 
 const Login = () => {
   const {setUser, loginUser, createUserWithGoogle} = useContext(AuthContext)
   const navigate = useNavigate()
   // eye pass show stat
   const [showPass, setShowPass] = useState(false)
+  const emailRef = useRef()
+  const location = useLocation()
 
 
   // handle login
@@ -21,7 +25,7 @@ const Login = () => {
     .then(res=>{
       setUser(res.user);
       toast.success("Login Success!!")
-      navigate("/")
+      navigate(location?.state ? location?.state: "/")
       // Reset the form fields after successful login
       e.target.reset();
     })
@@ -43,7 +47,26 @@ const Login = () => {
 
   // handle forget password
   const handleForgotPassword=()=>{
+    const email = emailRef.current.value;
+
+    if(!email){
+      toast.error("Please enter a valid email")
+    }
+    else{
+      sendPasswordResetEmail(auth, email)
+      .then(()=>{
+        toast.success("Sent a mail for your mail box!")
+        window.open("https://mail.google.com/", "_blank")
+      })
+      .catch(err=>{
+        toast.error(`${err.message}`)
+      })
+    }
   }
+
+  useEffect(()=>{
+    document.title="Login || Eco-Adventure"
+  }, [])
   return (
     <div className="flex items-center justify-center min-h-screen">
         <div className="card bg-base-100 w-full max-w-md py-16 px-5 shrink-0 rounded-md">
@@ -55,6 +78,7 @@ const Login = () => {
                 <span className="label-text font-semibold text-base">Email Address</span>
               </label>
               <input 
+              ref={emailRef}
               name="email"
               type="email" 
               placeholder="demo.mail@gamil.com" 

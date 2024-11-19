@@ -33,7 +33,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {
-            user && <div className="w-12 h-12 mr-3 rounded-full border-2 border-[#073B4c] overflow-hidden">
+            user && <div title={`${user && user?.displayName}`} className="w-12 h-12 mr-3 rounded-full border-2 border-[#073B4c] overflow-hidden">
             <img 
             className="w-full h-full object-cover"
             src={user && user?.photoURL} 
