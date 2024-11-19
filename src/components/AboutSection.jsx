@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "react-lottie-player";
 import adventureAnimation from "../assets/adventure-animation.json"; 
+import AOS from 'aos';
+import 'aos/dist/aos.css'
 const AboutSection = () => {
+  useEffect(()=>{
+    AOS.init({
+      duration: 1500,
+    });
+  }, [])
   return (
-    <section className="text-black py-10 px-6 lg:px-0">
+    <section className="text-black py-10 px-6 lg:px-0 overflow-hidden">
       <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <div className="space-y-6">
+        <div data-aos="fade-down" className="space-y-6">
           <h2 className="text-4xl font-bold ">
            About Adventure
           </h2>
@@ -22,7 +29,7 @@ const AboutSection = () => {
             Learn More
           </button>
         </div>
-        <div>
+        <div data-aos="fade-left">
           <Lottie
             loop
             animationData={adventureAnimation}

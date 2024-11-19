@@ -14,7 +14,9 @@ const UserProfile = () => {
   const {user} = useContext(AuthContext);
   return (
     <div className="flex items-center justify-center p-4">
-    <div data-aos="fade-up" className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-white shadow-2xl rounded-xl overflow-hidden">
+    <div data-aos="fade-up"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-white shadow-2xl rounded-xl overflow-hidden">
       {/* Profile Section */}
       <div className="relative">
         {/* Cover Photo */}

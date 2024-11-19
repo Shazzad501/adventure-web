@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import toast from 'react-hot-toast';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import AOS from 'aos';
+import 'aos/dist/aos.css'
 
 const Register = () => {
   const {newUserSet, setUser, upDateProfile} = useContext(AuthContext);
@@ -39,11 +41,17 @@ const Register = () => {
   }
 
   useEffect(()=>{
+    // dynamic title
     document.title="Register || Eco-Adventure"
+
+    // Aos animation
+    AOS.init({
+      duration: 1500,
+    });
   }, [])
   return (
-    <div className="flex items-center justify-center min-h-screen">
-    <div className="card bg-base-100 w-full max-w-md py-12 px-5 shrink-0 rounded-md">
+    <div className="flex items-center justify-center min-h-screen overflow-hidden">
+    <div data-aos="fade-right" className="card bg-base-100 w-full max-w-md py-12 px-5 shrink-0 rounded-md">
       <h2 className="font-bold text-xl text-center ">Register your account</h2>
       <form onSubmit={handleRegister} className="card-body">
         {/* Name filed */}

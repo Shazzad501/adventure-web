@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import AOS from 'aos';
+import 'aos/dist/aos.css'
 
 const UpdateProfile = () => {
   const{upDateProfile} = useContext(AuthContext)
@@ -27,11 +29,16 @@ const UpdateProfile = () => {
   }
 
   useEffect(()=>{
+    // dynamic title
     document.title="Update profile || Eco-Adventure"
+
+    AOS.init({
+      duration: 1500,
+    });
   }, [])
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="card bg-base-100 w-full max-w-md py-12 px-5 shrink-0 rounded-md">
+    <div className="flex items-center justify-center min-h-screen overflow-hidden">
+      <div data-aos="fade-left" className="card border-2 bg-base-100 w-full max-w-md py-12 px-5 shrink-0 rounded-md">
         <h2 className="font-bold text-xl text-center ">Update your Profile</h2>
         <form onSubmit={handleUpdateProfile} className="card-body">
           {/* Name filed */}

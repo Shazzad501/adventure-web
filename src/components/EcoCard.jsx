@@ -1,10 +1,17 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'
 
 const EcoCard = ({ecoData}) => {
   const{Adventure_Title, ID, Image, Eco_Friendly_Features=[]}= ecoData || {}
+  useEffect(()=>{
+    AOS.init({
+      duration: 1500,
+    });
+  }, [])
   return (
-    <div className="card bg-base-200">
+    <div data-aos="fade-down" className="card bg-base-200">
         <figure className="h-[230px] px-8 pt-8">
           <img
             src={Image}

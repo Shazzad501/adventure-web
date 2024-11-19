@@ -5,6 +5,8 @@ import { AuthContext } from '../provider/AuthProvider';
 import toast from 'react-hot-toast';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
+import AOS from 'aos';
+import 'aos/dist/aos.css'
 
 const Login = () => {
   const {setUser, loginUser, createUserWithGoogle} = useContext(AuthContext)
@@ -65,11 +67,16 @@ const Login = () => {
   }
 
   useEffect(()=>{
+    // dynamic title
     document.title="Login || Eco-Adventure"
+
+    AOS.init({
+      duration: 1500,
+    });
   }, [])
   return (
     <div className="flex items-center justify-center min-h-screen">
-        <div className="card bg-base-100 w-full max-w-md py-16 px-5 shrink-0 rounded-md">
+        <div data-aos="fade-down" className="card bg-base-100 w-full max-w-md py-16 px-5 shrink-0 rounded-md">
           <h2 className="font-bold text-xl text-center ">Login your account</h2>
           <form onSubmit={handleLogin} className="card-body">
             {/* Email filed */}

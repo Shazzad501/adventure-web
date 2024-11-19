@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css'
 
 const CardDetails = () => {
   const [adventure, setAdventure] = useState({});
@@ -8,7 +10,13 @@ const CardDetails = () => {
   const adventuredata = useLoaderData();
 
   useEffect(() => {
+    // dynamic title
     document.title="Details || Eco-Adventure"
+    // aos intrigration
+    AOS.init({
+      duration: 1500,
+    });
+
     if (id) {
       const findCard = [...adventuredata].find(data => data.ID === id);
       setAdventure(findCard);
@@ -45,7 +53,7 @@ const CardDetails = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto mt-5 text-black">
+    <div data-aos="fade-down" className="w-11/12 mx-auto mt-5 text-black">
       <div className="card bg-base-100 md:w-10/12 mx-auto shadow-xl">
         <figure className="w-full h-[450px]">
           <img
