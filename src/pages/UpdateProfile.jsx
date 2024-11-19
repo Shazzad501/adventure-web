@@ -38,7 +38,7 @@ const UpdateProfile = () => {
   }, [])
   return (
     <div className="flex items-center justify-center min-h-screen overflow-hidden">
-      <div data-aos="fade-left" className="card border-2 bg-base-100 w-full max-w-md py-12 px-5 shrink-0 rounded-md">
+      <div data-aos="fade-left" className="card bg-white border-2 w-full max-w-md py-12 px-5 shrink-0 rounded-md">
         <h2 className="font-bold text-xl text-center ">Update your Profile</h2>
         <form onSubmit={handleUpdateProfile} className="card-body">
           {/* Name filed */}
