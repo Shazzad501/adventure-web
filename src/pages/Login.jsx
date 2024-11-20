@@ -15,6 +15,7 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false)
   const emailRef = useRef()
   const location = useLocation()
+  const [error, setError]=useState("")
 
 
   // handle login
@@ -22,18 +23,22 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+    
+    // state resate
+    setError('')
 
-    loginUser(email, password)
-    .then(res=>{
-      setUser(res.user);
-      toast.success("Login Success!!")
-      navigate(location?.state ? location?.state: "/")
-      // Reset the form fields after successful login
-      e.target.reset();
-    })
-    .catch(err=>{
-      toast.error(`${err.message}!!`)
-    })
+      loginUser(email, password)
+      .then(res=>{
+        setUser(res.user);
+        toast.success("Login Success!!")
+        navigate(location?.state ? location?.state: "/")
+        // Reset the form fields after successful login
+        e.target.reset();
+      })
+      .catch(err=>{
+        setError(`${err.message}!!`)
+      })
+    
   }
 
   // handle google login function
@@ -50,9 +55,11 @@ const Login = () => {
   // handle forget password
   const handleForgotPassword=()=>{
     const email = emailRef.current.value;
+    // error state reset
+    setError("")
 
     if(!email){
-      toast.error("Please enter a valid email")
+      setError("Please enter a valid email")
     }
     else{
       sendPasswordResetEmail(auth, email)
@@ -61,7 +68,7 @@ const Login = () => {
         window.open("https://mail.google.com/", "_blank")
       })
       .catch(err=>{
-        toast.error(`${err.message}`)
+        setError(`${err.message}`)
       })
     }
   }
@@ -109,6 +116,15 @@ const Login = () => {
               </label>
             </div>
             {/* password filed */}
+
+            <div>
+              {
+                error &&  <label className="label">
+                <span className="label-text text-red-600">{error}</span>
+              </label> 
+              }
+            </div>
+
             <div className="form-control mt-6">
               <button className="btn bg-[#073B4c] font-bold text-base text-white hover:bg-[#073B4c]">Login</button>
 

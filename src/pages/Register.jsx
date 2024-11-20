@@ -9,8 +9,10 @@ import 'aos/dist/aos.css'
 const Register = () => {
   const {newUserSet, setUser, upDateProfile} = useContext(AuthContext);
   const navigate = useNavigate()
-    // eye pass show stat
-    const [showPass, setShowPass] = useState(false)
+  // eye pass show stat
+  const [showPass, setShowPass] = useState(false)
+  // error state
+  const [error, setError]= useState('')
 
   // handle registration function
   const handleRegister=(e)=>{
@@ -21,6 +23,15 @@ const Register = () => {
     const email = form.get('email');
     const password = form.get('password');
 
+    // Validate password
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      setError('Password must be at least 6 characters long and include at least one uppercase letter, one lowercase letter, and one digit.');
+      return;
+    }
+
+    // error state reset
+    setError('')
     newUserSet(email, password)
     .then(res => {
       setUser(res.user);
@@ -28,16 +39,17 @@ const Register = () => {
       e.target.reset();
       toast.success("Successfully Regisered!")
 
+// user profile updation
     upDateProfile({displayName: name, photoURL: photo})
     .then(()=>{
       toast.success("Profile Update success!!")
     })
     .catch((err)=>{
-      toast.error(`${err.message}`)
+      setError(`${err.message}`)
     })
 
     })
-    .catch(err => toast.error(`${err.message}`))
+    .catch(err => setError(`${err.message}`))
   }
 
   useEffect(()=>{
@@ -92,19 +104,28 @@ const Register = () => {
           className="input input-bordered" required />
         </div>
         {/* Email filed */}
-                    {/* password filed */}
-                    <div className="form-control relative">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label> 
-              <input 
-              type={showPass ? 'text' : 'password'}
-              name='password' 
-              placeholder="password" 
-              className="input input-bordered" required />
-              <button onClick={()=>setShowPass(!showPass)} className='btn btn-xs absolute right-2 top-12'>{showPass ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}</button>
-            </div>
-            {/* password filed */}
+        {/* password filed */}
+        <div className="form-control relative">
+          <label className="label">
+            <span className="label-text">Password</span>
+          </label> 
+          <input 
+            type={showPass ? 'text' : 'password'}
+            name='password' 
+            placeholder="demo-@A2ad1" 
+            className="input input-bordered" required />
+            <button onClick={()=>setShowPass(!showPass)} className='btn btn-xs absolute right-2 top-12'>{showPass ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}</button>
+        </div>
+        {/* password filed */}
+
+          <div>
+            {
+              error &&  <label className="label">
+              <span className="label-text font-semibold text-sm text-red-600">{error}</span>
+            </label>
+            }
+          </div>
+
         <div className="form-control mt-6">
           <button className="btn bg-[#073B4c] font-bold text-base text-white hover:bg-[#073B4c]">Register</button>
         </div>

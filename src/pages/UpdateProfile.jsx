@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -6,6 +6,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'
 
 const UpdateProfile = () => {
+  const [error, setError] = useState('')
   const{upDateProfile} = useContext(AuthContext)
   const navigate = useNavigate()
 
@@ -15,13 +16,16 @@ const UpdateProfile = () => {
 
     const name = e.target.name.value;
     const photo = e.target.photo.value;
+
+    setError('')
+
     upDateProfile({displayName: name, photoURL: photo})
     .then(()=>{
       navigate("/user-profile");
       toast.success("Profile Update success!!")
     })
     .catch((err)=>{
-      toast.error(`${err.message}`)
+      setError(`${err.message}`)
     })
 
     // Reset the form fields after successful registration
@@ -66,6 +70,13 @@ const UpdateProfile = () => {
             className="input input-bordered" />
           </div>
           {/* photo url filed */}
+          <div className='form-control'>
+          {
+            error && <label className='label'>
+              <span className="label-text font-semibold text-base">{error}</span>
+              </label>
+          }
+          </div>
 
           <div className="form-control mt-6">
             <button className="btn bg-[#073B4c] font-bold text-base text-white hover:bg-[#073B4c]">Update</button>
