@@ -1,4 +1,3 @@
-Assignment Category: 002
 Live Link: https://adventure-travel-7268f.web.app
 Project name: Eco-Adventure Experiences 
 
