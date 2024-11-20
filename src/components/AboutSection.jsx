@@ -14,7 +14,7 @@ const AboutSection = () => {
       <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div data-aos="fade-down" className="space-y-6">
           <h2 className="text-4xl font-bold ">
-           About Adventure
+           About Advancing
           </h2>
           <p className="text-lg leading-relaxed">
             At AdventureCo, we believe life is meant to be explored. 

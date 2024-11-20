@@ -1,26 +1,55 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css'
+import { Typewriter } from 'react-simple-typewriter';
 
 const UserProfile = () => {
+// animation shower state
+const [showAnimation, setShowAnimation] = useState(true)
+
   useEffect(()=>{
+    // aos animation
     AOS.init({
       duration: 1000,
     });
+    // dynamic title
     document.title= "Profile || Eco-Adventure"
-  }, [])
+
+    // Hide animation after it completes
+    const timer = setTimeout(() => setShowAnimation(false), 6000);
+    return () => clearTimeout(timer);
+  }, [setShowAnimation])
   const {user} = useContext(AuthContext);
   return (
     <div className="flex items-center justify-center p-4">
     <div data-aos="fade-up"
      data-aos-offset="300"
      data-aos-easing="ease-in-sine" className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-white shadow-2xl rounded-xl overflow-hidden">
+
       {/* Profile Section */}
       <div className="relative">
         {/* Cover Photo */}
-        <div className="h-32 bg-gradient-to-r from-[#04212b] to-[#124057] "></div>
+        <div className="h-32 bg-gradient-to-r from-[#04212b] to-[#124057] ">
+          {/* Typewriter Animation */}
+          {showAnimation && (
+            <h1 className="text-xl text-center font-bold text-white">
+              <Typewriter
+                words={[
+                  `Welcome, ${user?.displayName}!`,
+                  "Let's start your journey!",
+                ]}
+                loop={false}
+                cursor
+                cursorStyle="_"
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1000}
+              />
+            </h1>
+        )}
+        </div>
         {/* Profile Picture */}
         <div className="absolute top-16 left-1/2 transform -translate-x-1/2">
           <div className="avatar">

@@ -17,6 +17,9 @@ const Login = () => {
   const location = useLocation()
   const [error, setError]=useState("")
 
+  // redirect path
+  const redirectPath = location?.state?.from?.pathname || '/';
+
 
   // handle login
   const handleLogin=(e)=>{
@@ -31,7 +34,7 @@ const Login = () => {
       .then(res=>{
         setUser(res.user);
         toast.success("Login Success!!")
-        navigate(location?.state ? location?.state: "/")
+        navigate(redirectPath)
         // Reset the form fields after successful login
         e.target.reset();
       })
@@ -47,7 +50,7 @@ const Login = () => {
     .then(res=>{
       setUser(res.user);
       toast.success("Login Success!!")
-      navigate('/')
+      navigate(redirectPath)
     })
     .catch(err=> toast.error(`${err.message}`))
   }

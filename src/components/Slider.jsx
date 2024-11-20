@@ -28,12 +28,12 @@ const Slider = () => {
             Venture into the heart of rugged wilderness and let towering mountains inspire awe in every step. A mountain adventure <br className='hidden md:block' /> promises breathtaking vistas, fresh alpine air, and the thrill of conquering new heights.
             </p>
             <div data-aos="fade-up">
-            <Link
-              to='/destination'
+            <a
+              href='#main-section'
               className="btn bg-transparent font-bold text-base text-white hover:bg-[#073B4c] border-2 border-[#073B4c]"
             >
               View More
-            </Link>
+            </a>
             </div>
           </div>
           {/* Navigation */}
@@ -61,12 +61,12 @@ const Slider = () => {
             Venture deep into the heart of lush forests where towering trees stretch towards the sky, and every step leads you <br className='hidden md:block' />closer to nature’s hidden wonders. The forest expedition promises encounters with rare wildlife, the soothing sounds <br className='hidden md:block' /> of rustling leaves, and the intoxicating aroma of earth and greenery.
             </p>
           <div data-aos="fade-up">
-          <Link
-              to='/destination'
+          <a
+              href='#main-section'
               className="btn bg-transparent font-bold text-base text-white hover:bg-[#073B4c] border-2 border-[#073B4c]"
             >
               View More
-            </Link>
+            </a>
           </div>
           </div>
           {/* Navigation */}
@@ -94,12 +94,12 @@ const Slider = () => {
             Embark on an unforgettable journey through sun-soaked deserts, discovering the hidden secrets of this arid world.<br className='hidden md:block' /> From the soft rustling of the wind to the magical glow of the night sky, every moment in the desert is<br className='hidden md:block' /> a step closer to nature's raw and untouched beauty.
             </p>
             <div data-aos="fade-up">
-            <Link
-              to='/destination'
+            <a
+              href='#main-section'
               className="btn bg-transparent font-bold text-base text-white hover:bg-[#073B4c] border-2 border-[#073B4c]"
             >
               View More
-            </Link>
+            </a>
             </div>
           </div>
           {/* Navigation */}
