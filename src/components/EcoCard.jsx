@@ -11,7 +11,7 @@ const EcoCard = ({ecoData}) => {
     });
   }, [])
   return (
-    <div data-aos="fade-down" className="card bg-base-200">
+    <div data-aos="zoom-in" className="card bg-base-200">
         <figure className="h-[230px] px-8 pt-8">
           <img
             src={Image}

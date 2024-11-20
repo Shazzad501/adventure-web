@@ -3,6 +3,7 @@ import Footer from '../components/Footer';
 import Slider from '../components/Slider';
 import { Outlet } from 'react-router-dom';
 import AboutSection from '../components/AboutSection';
+import ContactUs from '../components/ContactUs';
 
 const Home = () => {
   useEffect(()=>{
@@ -22,6 +23,11 @@ const Home = () => {
       <section>
         <Outlet></Outlet>
       </section>
+      {/* contact us */}
+      <section className='w-11/12 mx-auto mb-10'>
+          <ContactUs></ContactUs>
+      </section>
+
       {/* Footer */}
       <section className='bg-[#092635] w-full'>
         <Footer></Footer>
